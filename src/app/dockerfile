@@ -1,0 +1,15 @@
+FROM python:3.8.2
+ENV FLASK_APP=flaskr
+
+ENV FLASK_ENV=development
+WORKDIR /usr/src/app
+COPY ./DevopsCourse2024 .
+RUN pip install --upgrade pip
+
+RUN pip install --editable .
+RUN flask init-db
+COPY . .
+
+
+EXPOSE 5000
+CMD ["flask", "run", "--host=0.0.0.0"]
